@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Pricing - Agent Engineering</title>
+<meta name="description" content="One course, all five layers. $150, one payment, lifetime access.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff;--soft:#f7f7f9;--ink:#0b0b0c;--ink2:#55555e;--mut:#8e8e98;
+  --line:#ececed;--line2:#f4f4f6;--vio:#6d4fe0;
+  --i1:#c9b8ff;--i2:#ffcdb0;--i3:#a9dcff;--i4:#bff0dc;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative;min-height:100dvh}
+.field{position:absolute;top:0;left:0;right:0;height:700px;z-index:-1;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(64px);opacity:.85}
+.b1{width:60vw;height:60vw;max-width:600px;max-height:600px;left:-12vw;top:-16vh;background:var(--i1)}
+.b2{width:56vw;height:56vw;max-width:560px;max-height:560px;right:-12vw;top:-8vh;background:var(--i2)}
+.b3{width:50vw;height:50vw;max-width:500px;max-height:500px;left:28vw;top:2vh;background:var(--i3);opacity:.7}
+.veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.58) 32%,rgba(255,255,255,.92) 58%,#fff 80%)}
+.wrap{max-width:640px;margin:0 auto;padding:0 18px}
+
+.topbar{position:relative;padding:16px 0;display:flex;align-items:center}
+.back,.lognav{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink2);
+  font-size:14px;font-weight:600;padding:11px 16px;border-radius:999px;min-height:42px;
+  border:1px solid var(--line);background:rgba(255,255,255,.86);backdrop-filter:blur(14px);
+  box-shadow:0 2px 10px rgba(11,11,12,.06);
+}
+.lognav{position:fixed;right:14px;top:12px;z-index:61;color:var(--ink);font-weight:700}
+@media(min-width:900px){.lognav{right:20px;top:16px}}
+.back:hover,.lognav:hover{background:#fff}
+
+.head{text-align:center;padding:24px 0 6px}
+.eyebrow{
+  position:relative;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11.5px;
+  color:var(--mut);letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px;font-weight:500;
+}
+.eyebrow:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:3px;border-radius:3px;background:linear-gradient(90deg,#b9a2ff,#8fc9ff 48%,#ffb98c)}
+h1{font-size:clamp(28px,7vw,42px);line-height:1.08;font-weight:800;letter-spacing:-.03em;max-width:18ch;margin:0 auto}
+.sub{margin:16px auto 0;max-width:48ch;color:var(--ink2);font-size:16.5px;line-height:1.55}
+
+.price-wrap{max-width:540px;margin:30px auto 0}
+.price-card{
+  border:1px solid var(--line);border-radius:26px;background:#fff;padding:32px 22px;
+  position:relative;box-shadow:0 24px 60px rgba(11,11,12,.08);
+}
+@media(min-width:600px){.price-card{padding:40px}}
+.price-card:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;border-radius:26px 26px 0 0;background:linear-gradient(90deg,var(--i1),var(--i3),var(--i4),var(--i2))}
+.p-head{text-align:center;padding-bottom:4px}
+.p-name{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:8px;font-weight:500}
+.p-title{font-size:25px;font-weight:800;letter-spacing:-.03em}
+.p-num{margin-top:16px;font-size:62px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.p-sub{margin-top:7px;font-size:14px;color:var(--mut)}
+.checks{list-style:none;margin:24px 0 0;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line2);padding-top:24px}
+.checks li{padding-left:28px;position:relative;font-size:15.5px;line-height:1.4;font-weight:600}
+.checks li:before{content:"";position:absolute;left:2px;top:5px;width:11px;height:6px;border-left:2.2px solid var(--ink);border-bottom:2.2px solid var(--ink);transform:rotate(-45deg)}
+.checks li span{color:var(--mut);font-size:13.5px;display:block;margin-top:3px;font-weight:400}
+
+.btn{
+  position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  background:linear-gradient(180deg,#565663 0%,#26262e 34%,#0d0d10 72%,#000 100%);
+  color:#fff;font-family:inherit;font-weight:700;font-size:16px;letter-spacing:-.01em;
+  padding:17px 30px;border-radius:999px;text-decoration:none;border:none;cursor:pointer;min-height:54px;width:100%;
+  box-shadow:0 1.5px 0 rgba(255,255,255,.5) inset,0 -7px 16px rgba(0,0,0,.5) inset;
+  transition:transform .16s,filter .16s;margin-top:26px;
+}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+.guar{margin-top:14px;text-align:center;font-size:12.5px;color:var(--mut);line-height:1.5}
+
+.note-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:26px}
+@media(min-width:620px){.note-row{grid-template-columns:1fr 1fr;gap:14px}}
+.note{border:1px solid var(--line);border-radius:16px;background:#fff;padding:18px}
+.note h4{font-size:15.5px;font-weight:800;letter-spacing:-.02em;margin-bottom:7px}
+.note p{color:var(--ink2);font-size:14.5px;line-height:1.55}
+
+.faq{margin-top:38px}
+.faq-h{
+  position:relative;display:block;width:fit-content;margin:0 auto 22px;
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--mut);
+  letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+}
+.faq-h:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:3px;border-radius:3px;background:linear-gradient(90deg,#b9a2ff,#8fc9ff 48%,#ffb98c)}
+details{border-bottom:1px solid var(--line2);padding:16px 0}
+summary{cursor:pointer;list-style:none;font-size:16px;font-weight:700;letter-spacing:-.02em;display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--mut);font-size:19px;line-height:1.1;flex-shrink:0}
+details[open] summary:after{content:"–"}
+details p{margin-top:11px;color:var(--ink2);font-size:15px;line-height:1.6}
+
+footer{padding:40px 0 48px;text-align:center;color:var(--mut);font-size:12.5px}
+footer a{color:var(--ink2);text-decoration:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.acct{position:fixed;right:14px;top:12px;z-index:61}
+@media(min-width:900px){.acct{right:20px;top:16px}}
+.acct .lognav{position:static;right:auto;top:auto}
+.avwrap{position:relative}
+.av{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);cursor:pointer;
+  background:conic-gradient(from 200deg,var(--i1),var(--i2),var(--i4),var(--i3),var(--i1));
+  display:flex;align-items:center;justify-content:center;padding:0;
+  box-shadow:0 2px 10px rgba(11,11,12,.10);
+}
+.av b{
+  width:32px;height:32px;border-radius:50%;background:#fff;color:var(--ink);
+  font-family:inherit;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;
+}
+.avmenu{
+  position:absolute;right:0;top:52px;min-width:224px;background:#fff;border:1px solid var(--line);
+  border-radius:18px;padding:8px;box-shadow:0 18px 44px rgba(11,11,12,.14);
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s,transform .16s,visibility .16s;
+}
+.avwrap:hover .avmenu,.avmenu.open{opacity:1;visibility:visible;transform:translateY(0)}
+.avmenu .who-n{padding:10px 12px 2px;font-size:15px;font-weight:800;letter-spacing:-.02em}
+.avmenu .who-m{padding:0 12px 10px;font-size:12.5px;color:var(--mut);word-break:break-all;border-bottom:1px solid var(--line2);margin-bottom:6px}
+.avmenu a,.avmenu button{
+  display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  font-family:inherit;font-size:14.5px;font-weight:600;color:var(--ink);
+  padding:11px 12px;border-radius:12px;text-decoration:none;
+}
+.avmenu a:hover,.avmenu button:hover{background:var(--soft)}
+.avmenu button{color:var(--no,#d4634a)}
+
+</style>
+</head>
+<body>
+
+<div class="field"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="veil"></div></div>
+
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="index.html">&larr; Back</a>
+    <div class="acct" id="acct"><a class="lognav" href="course.html">Log in</a></div>
+  </div>
+
+  <div class="head">
+    <div class="eyebrow">pricing</div>
+    <h1>One course, all five layers.</h1>
+    <p class="sub">One payment, no subscription, and every future update included.</p>
+  </div>
+
+  <div class="price-wrap">
+    <div class="price-card">
+      <div class="p-head">
+        <div class="p-name">lifetime access</div>
+        <div class="p-title">The full course</div>
+        <div class="p-num">$150</div>
+        <div class="p-sub">One payment. Updates included.</div>
+      </div>
+      <ul class="checks">
+        <li>Prompt engineering<span>improves the message</span></li>
+        <li>Context engineering<span>controls what the model sees</span></li>
+        <li>Harness engineering<span>builds the machinery around the call</span></li>
+        <li>Loop engineering<span>makes the work improve through feedback</span></li>
+        <li>Graph engineering<span>coordinates all the work</span></li>
+        <li>All templates, configs and graph shapes</li>
+        <li>Every future update, no extra cost</li>
+      </ul>
+      <a class="btn" href="checkout.html">Continue to payment<span class="arw">&rarr;</span></a>
+      <div class="guar">If the payment clears and access does not arrive, you get a full refund.</div>
+    </div>
+
+    <div class="note-row">
+      <div class="note"><h4>How you get it</h4><p>You create an account with your email and read everything on this site. Any device, no download.</p></div>
+      <div class="note"><h4>How you pay</h4><p>USDT on TRC-20, or PayPal. Send the proof and access opens, usually within the hour.</p></div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-h">before you pay</div>
+      <details><summary>Do I need this if I do not write code?</summary><p>Yes, and layers one and two are usually where non-coders gain the most. Most of the material is about how to think about the work and how to shape what the model sees, which pays off in any tool you already use.</p></details>
+      <details><summary>How is this different from free material?</summary><p>Free material tells you what exists. This tells you what to do, in what order, and what to skip, with worked examples and configs you copy straight into your own setup.</p></details>
+      <details><summary>Is there a refund?</summary><p>The material is digital, so there is no refund once access is open. One exception: if the payment clears and access never arrives, you get everything back.</p></details>
+    </div>
+  </div>
+
+  <footer>Agent Engineering &middot; <a href="index.html">back to the course page</a></footer>
+</div>
+<script
+  async crossorigin="anonymous"
+  data-clerk-publishable-key="pk_test_Zmx5aW5nLWNvd2JpcmQtOTExMi5jbGVyay5hY2NvdW50cy5kZXYk"
+  src="https://flying-cowbird-9112.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+  type="text/javascript"></script>
+<script>
+(function(){
+  var box=document.getElementById('acct');
+  if(!box) return;
+  function paint(user){
+    if(!user){ box.innerHTML='<a class="lognav" href="course.html">Log in</a>'; return; }
+    var email=(user.primaryEmailAddress&&user.primaryEmailAddress.emailAddress)||'';
+    var name=user.firstName||user.username||email.split('@')[0];
+    var letter=(name||'?').trim().charAt(0).toUpperCase();
+    box.innerHTML=
+      '<div class="avwrap">'+
+        '<button class="av" id="avBtn" aria-label="Account"><b>'+letter+'</b></button>'+
+        '<div class="avmenu" id="avMenu">'+
+          '<div class="who-n">'+name+'</div>'+
+          '<div class="who-m">'+email+'</div>'+
+          '<a href="course.html">My course</a>'+
+          '<button id="soBtn">Sign out</button>'+
+        '</div>'+
+      '</div>';
+    var b=document.getElementById('avBtn'),m=document.getElementById('avMenu');
+    b.addEventListener('click',function(e){e.stopPropagation();m.classList.toggle('open');});
+    document.addEventListener('click',function(){m.classList.remove('open');});
+    document.getElementById('soBtn').addEventListener('click',async function(){
+      await window.Clerk.signOut(); location.reload();
+    });
+  }
+  function boot(){
+    if(!window.Clerk){ setTimeout(boot,250); return; }
+    window.Clerk.load().then(function(){
+      paint(window.Clerk.user);
+      window.Clerk.addListener(function(ev){ paint(ev.user); });
+    });
+  }
+  boot();
+})();
+</script>
+
+</body>
+</html>
